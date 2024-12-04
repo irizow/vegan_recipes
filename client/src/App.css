@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Sequel';
+  src: url(./assets/fonts/Sequel-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url(./assets/fonts/Poppins-Regular.ttf);
+}
+
+:root {
+  --white: rgb(232, 232, 232);
+  --black: rgb(27, 27, 27);
+  --grey: rgb(115, 115, 115);
+}
+
+section {
+  padding: 4rem;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
