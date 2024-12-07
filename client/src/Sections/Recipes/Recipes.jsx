@@ -4,6 +4,7 @@ import RecipeCard from '../../Components/RecipeCard/RecipeCard';
 import { useContext } from 'react';
 import { SearchIngredientsContext } from '../../utils/SearchedIngredientsContext';
 import Searchbar from '../../Components/Searchbar/Searchbar';
+import { Link } from 'react-router-dom';
 
 export default function Recipes() {
     
@@ -34,9 +35,11 @@ export default function Recipes() {
             <h2>Recipes</h2>
             {filteredRecipes !== undefined && filteredRecipes.map((recipe, index) => {
                 return  (
+                <Link to={`/recipe/${recipe.id}`}>
                 <div key={index}  onClick={()=> handleClick(recipe)}>
-                    <RecipeCard name={recipe.name} />
+                    <RecipeCard name={recipe.name} id={recipe.id} />
                 </div>
+                </Link>
                 )
             })}
         </section>

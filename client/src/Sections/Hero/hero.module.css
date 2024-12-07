@@ -8,7 +8,7 @@
     gap: 3rem;
     background-image: url(../../assets/images/Hero/green-fridge2.webp);
     background-size: 100vw;
-    background-position: 0 -30vh;
+    background-position: 0 -10vh;
 }
 
 .loginbutton {
@@ -18,6 +18,7 @@
 }
 
 .hero h1 {
+    color: var(--black);
     margin: 0;
     font-family: 'Sequel', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

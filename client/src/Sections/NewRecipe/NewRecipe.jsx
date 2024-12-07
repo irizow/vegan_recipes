@@ -3,13 +3,16 @@ import { useState, useContext } from 'react';
 import { SearchIngredientsContext } from '../../utils/SearchedIngredientsContext';
 import Searchbar from '../../Components/Searchbar/Searchbar';
 import RecipeCard from '../../Components/RecipeCard/RecipeCard';
+import useFetch from '../../Hooks/useFetch';
 
 
 
 export default function NewRecipe() {
+    const { data: categories, isLoading, error } = useFetch('http://localhost:4000/categories');
     const {recipeIngredients, setRecipeIngredients} = useContext(SearchIngredientsContext)
     const [recipeName, setRecipeName] = useState('');
     const [calories, setCalories] = useState(0);
+    const [category, setCategory] = useState([]);
     const [time, setTime] = useState(0);
     const [steps, setSteps] = useState(['', '', '']);
     const [recipePicture, setRecipePicture] = useState()
@@ -22,12 +25,10 @@ export default function NewRecipe() {
 
     const handleStepsButton = (action) => {
         if (action === '+') {
-        const newSteps = [...steps];
-        newSteps[steps.length] = '';
+            setSteps([...steps, ''])
         setSteps(newSteps) }
         else if (action === '-') {
-            const newSteps = steps.slice(0, steps.length-1)
-            setSteps(newSteps)
+            setSteps(steps.slice(0, steps.length - 1));
         }
         
     }
@@ -35,6 +36,22 @@ export default function NewRecipe() {
     const handleFileChange = (event) => {
         setRecipePicture(event.target.files[0]);
       };
+
+      const handleCategoryChange = (e) => {
+        const { value, checked } = e.target;
+        console.log('category', category);
+    
+        setCategory((prevCategories) => {
+            if (checked) {
+
+                return [...prevCategories, value];
+            } else {
+ 
+                return prevCategories.filter((category) => category !== value);
+            }
+        });
+    };
+
 
       const handleSubmit = async (e) => {
         e.preventDefault();
@@ -46,7 +63,10 @@ export default function NewRecipe() {
                 ingredientIds: recipeIngredients.map((ingredient) => ingredient.id),
                 calories_per_100: calories,
                 time: time,
+                categoryIds: category
             };
+
+            console.log("Recipe Data to Send:", recipeData);
     
             try {
                 const response = await fetch("/recipes", {
@@ -98,6 +118,14 @@ export default function NewRecipe() {
                 <label>Ingredients:</label>
                 <div className={styles.searchbardiv}>
                     <Searchbar hero={false} />
+                </div>
+                <label>Category</label>
+                <div className={styles.categories}>
+                {(categories && !isLoading) && categories.map((category, index) =>
+                <div>
+                <input type='checkbox' key={index} value={category.id} onChange={handleCategoryChange}></input>
+                <label>{category.name}</label>
+                </div>)}
                 </div>
                 <div>
                     <label>Approximate Calories per Serving:</label>
