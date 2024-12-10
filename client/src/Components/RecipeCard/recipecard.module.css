@@ -20,6 +20,11 @@
     border: 1px solid white;
 }
 
+.recipeimg img {
+    width: 100%;
+    border-radius: 5px;
+}
+
 .tagcontainer {
     position: absolute;
     display: flex;

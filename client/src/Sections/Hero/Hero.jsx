@@ -1,21 +1,24 @@
-import styles from './hero.module.css';
-import Searchbar from '../../Components/Searchbar/Searchbar';
-import { SearchIngredientsContext } from '../../utils/SearchedIngredientsContext';
-import { useContext } from 'react';
+import styles from "./hero.module.css";
+import Searchbar from "../../Components/Searchbar/Searchbar";
+import { SearchIngredientsContext } from "../../utils/SearchedIngredientsContext";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
-export default function Hero({setShowRecipes}) {
-    
+export default function Hero({ setShowRecipes }) {
+    const {searchedIngredients} = useContext(SearchIngredientsContext);
+  const handleClick = () => {
+    searchedIngredients.length > 0 ? setShowRecipes(true) : alert('You need to search for at least one ingredient!');
+  };
 
-    const handleClick = ()=> {
-        setShowRecipes(true);
-    }
-
-    return (
-        <section className={styles.hero}>
-            <button className={styles.loginbutton}>Log In</button>
-            <h1>What's In Your Fridge?</h1>
-            <Searchbar hero={true} />
-            <button onClick={handleClick}>I'm hungry</button>
-        </section>
-    )
+  return (
+    <section className={styles.hero}>
+      <div className={styles.buttonbox}>
+        <Link to="/add-recipe">Add Recipe</Link>
+        <button>Log In</button>
+      </div>
+      <h1>What's In Your Fridge?</h1>
+      <Searchbar hero={true} />
+      <button onClick={handleClick}>I'm hungry</button>
+    </section>
+  );
 }

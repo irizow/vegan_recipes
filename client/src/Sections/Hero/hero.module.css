@@ -11,10 +11,19 @@
     background-position: 0 -10vh;
 }
 
-.loginbutton {
+.buttonbox {
+    display: flex;
+    gap: 2rem;
     position: absolute;
     top: 1rem;
     right: 1rem;
+}
+
+.buttonbox>a, .buttonbox>button {
+    padding: 0.5rem 1rem;
+    background-color: var(--black);
+    border-radius: 10px;
+    color: var(--white);
 }
 
 .hero h1 {
