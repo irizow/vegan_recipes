@@ -15,15 +15,17 @@ export default function RecipeDetail() {
 
   return (
     <section className={styles.recipedetail}>
-      <h1>{recipe[0].name}</h1>
-      <ol>
-        {recipe[0].instructions.map((instruction) => (
-          <li>{instruction}</li>
-        ))}
-      </ol>
-      {recipe[0].kcal && <p>kcal: {recipe[0].kcal}</p>}
+      <div>
+        <h2>{recipe[0].name}</h2>
+        <ol>
+          {recipe[0].instructions.map((instruction) => (
+            <li>{instruction}</li>
+          ))}
+        </ol>
+        {recipe[0].kcal && <p>kcal: {recipe[0].kcal}</p>}
 
-      {recipe[0].time && <p>kcal: {recipe[0].time}</p>}
+        {recipe[0].time && <p>kcal: {recipe[0].time}</p>}
+      </div>
     </section>
   );
 }

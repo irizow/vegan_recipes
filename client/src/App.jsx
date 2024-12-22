@@ -1,10 +1,8 @@
 import "./App.css";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { SearchedIngredientsProvider } from "./utils/SearchedIngredientsContext.jsx";
-import { SearchIngredientsContext } from "./utils/SearchedIngredientsContext.jsx";
 import Hero from "./Sections/Hero/Hero";
 import Recipes from "./Sections/Recipes/Recipes";
-import NewRecipe from "./Sections/NewRecipe/NewRecipe.jsx";
 import { Outlet } from "react-router-dom";
 
 function App() {

@@ -18,19 +18,30 @@ export default function Recipes() {
     "http://localhost:4000/recipe_ingredients",
   );
 
-  let filteredRecipes = [];
+  let filteredRecipes = undefined;
   if (recipes && recipeIngredients) {
-    const filteredIds = recipeIngredients.filter((recipeIngredient) =>
-      searchedIngredients.some(
-        (ingredient) => ingredient.id === recipeIngredient.ingredient_id,
-      ),
-    );
-    const filteredRecipeIds = filteredIds.map(
-      (recipeIngredient) => recipeIngredient.recipe_id,
-    );
-    filteredRecipes = recipes.filter((recipe) =>
-      filteredRecipeIds.includes(recipe.id),
-    );
+    // Check all the recipes
+    filteredRecipes = recipes.filter((recipe) => {
+      // Get all the ingredients for every recipe
+      const recipeIngredientsForRecipe = recipeIngredients.filter(
+        (recipeIngredient) => recipeIngredient.recipe_id === recipe.id
+      );
+  
+      // Get the num of ingredients for that recipe
+      const totalIngredients = recipeIngredientsForRecipe.length;
+  
+      //How many of those ingredients are in the searchedIngredients?
+      const matchingIngredientsCount = recipeIngredientsForRecipe.filter((recipeIngredient) =>
+        searchedIngredients.some(
+          (ingredient) => ingredient.id === recipeIngredient.ingredient_id
+        )
+      ).length;
+  
+      //Calculate how many of those ingredients match in %
+      const matchingPercentage = (matchingIngredientsCount / totalIngredients) * 100;
+  
+      return matchingPercentage >= 50;
+    });
   }
 
   const handleClick = (recipe) => {
@@ -41,19 +52,22 @@ export default function Recipes() {
 
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>Error: {error}</p>;
+
   return (
     <section className={styles.recipes}>
       <h2>Recipes</h2>
-      {filteredRecipes !== undefined &&
-        filteredRecipes.map((recipe, index) => {
-          return (
-            <Link to={`/recipe/${recipe.id}`}>
-              <div key={index} onClick={() => handleClick(recipe)}>
-                <RecipeCard name={recipe.name} id={recipe.id} />
-              </div>
-            </Link>
-          );
-        })}
+      <div className={styles.recipeswrapper}>
+        {filteredRecipes !== undefined &&
+          filteredRecipes.map((recipe, index) => {
+            return (
+              <Link to={`/recipe/${recipe.id}`}>
+                <div key={index} onClick={() => handleClick(recipe)}>
+                  <RecipeCard name={recipe.name} id={recipe.id} />
+                </div>
+              </Link>
+            );
+          })}
+      </div>
     </section>
   );
 }

@@ -17,8 +17,8 @@ export default function Hero({ setShowRecipes }) {
         <button>Log In</button>
       </div>
       <h1>What's In Your Fridge?</h1>
-      <Searchbar hero={true} />
-      <button onClick={handleClick}>I'm hungry</button>
+        <Searchbar hero={true} />
+      <button className={styles.searchbutton} onClick={handleClick}>LET'S COOK!</button>
     </section>
   );
 }

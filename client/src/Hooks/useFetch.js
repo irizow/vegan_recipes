@@ -6,7 +6,6 @@ export default function useFetch(url) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    let isMounted = true;
     const fetchData = async () => {
       try {
         const response = await fetch(url);
@@ -14,10 +13,8 @@ export default function useFetch(url) {
           throw new Error(`HTTP error, status ${response.status}`);
         }
         const result = await response.json();
-        if (isMounted) {
           setData(result);
           setIsLoading(false);
-        }
       } catch (err) {
         if (isMounted) {
           setError(err.message);
@@ -28,9 +25,6 @@ export default function useFetch(url) {
 
     fetchData();
 
-    return () => {
-      isMounted = false;
-    };
   }, [url]);
 
   return { data, isLoading, error };
