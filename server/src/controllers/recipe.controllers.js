@@ -20,7 +20,7 @@ export const postRecipe =  async (req, res) => {
     try {
         parsedInstructions = Array.isArray(instructions)
             ? instructions
-            : JSON.parse(instructions); // Parse if it's a JSON string
+            : JSON.parse(instructions); // Parse if it's json
     } catch (err) {
         return res.status(400).send("Invalid instructions format");
     }

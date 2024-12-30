@@ -75,9 +75,9 @@ export default function Searchbar({ hero }) {
       <input type="text" onChange={handleInputChange} />
       {!searching && hero && (
         <>
-          <span className={`${styles.tag} ${styles.pre}`}>onion X</span>
-          <span className={`${styles.tag} ${styles.pre}`}>carrots X</span>
-          <span className={`${styles.tag} ${styles.pre}`}>tofu X</span>
+          <span className={`${styles.tag} ${styles.pre}`}>onion  &#128473;</span>
+          <span className={`${styles.tag} ${styles.pre}`}>carrots  &#128473;</span>
+          <span className={`${styles.tag} ${styles.pre}`}>tofu  &#128473;</span>
         </>
       )}
       {search && (
