@@ -4,8 +4,8 @@ import { getCategories, getCategoryRecipes } from "../controllers/category.contr
 
 const router = Router();
 
-router.get('/categories', getCategories);
+router.get('/api/categories', getCategories);
 
-router.get('/categoryrecipes', getCategoryRecipes);
+router.get('/api/categoryrecipes', getCategoryRecipes);
 
 export default router;

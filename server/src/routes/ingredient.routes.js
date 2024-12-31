@@ -3,14 +3,14 @@ import { getIngredients, getIngredient, postIngredient, deleteIngredient, update
 
 const router = Router();
 
-router.get('/ingredients', getIngredients);
+router.get('/api/ingredients', getIngredients);
 
-router.get('/ingredient/:id', getIngredient);
+router.get('/api/ingredient/:id', getIngredient);
 
-router.post('/ingredients', postIngredient);
+router.post('/api/ingredients', postIngredient);
 
-router.delete('/ingredient/:id', deleteIngredient);
+router.delete('/api/ingredient/:id', deleteIngredient);
 
-router.put('/ingredient/:id', updateIngredient);
+router.put('/api/ingredient/:id', updateIngredient);
 
 export default router;

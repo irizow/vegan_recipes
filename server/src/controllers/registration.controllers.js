@@ -8,13 +8,13 @@ export const postRegistration = async(req, res) => {
     try {
     const existingUser = await pool.query(`SELECT * FROM users WHERE email = $1 OR username = $2`, [email, username]);
 
-    if(existingUser) {
-        return res.status(400).send('User already exists')
+    if(existingUser.rows.length > 0) {
+        return res.status(400).json({message:'This usarname is taken, try another one'})
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    pool.query(`INSERT INTO users(username, password, email) VALUES($1, $2, $3)`, [username, hashedPassword, email]);
+    await pool.query(`INSERT INTO users(username, password, email) VALUES($1, $2, $3)`, [username, hashedPassword, email]);
 
     res.status(201).send("User created successfully");
 

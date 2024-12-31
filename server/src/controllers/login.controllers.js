@@ -9,7 +9,7 @@ export const postLogin = async(req, res) => {
         const existingUser = await pool.query(`SELECT FROM users WHERE email = 1$ OR username = $1`, [username]);
 
         if(existingUser.rows.length === 0) {
-            return res.status(401).send('User not found')
+            return res.status(401).json({message: 'User not found'})
         }
 
         const user = existingUser.rows[0];

@@ -4,14 +4,14 @@ import { getRecipes, getRecipe, postRecipe, deleteRecipe, updateRecipe } from '.
 
 const router = Router();
 
-router.get('/recipes', getRecipes);
+router.get('/api/recipes', getRecipes);
 
-router.get('/recipe/:id', getRecipe);
+router.get('/api/recipe/:id', getRecipe);
 
-router.post('/recipes/', postRecipe);
+router.post('/api/recipes/', postRecipe);
 
-router.delete('/recipe/:id', deleteRecipe);
+router.delete('/api/recipe/:id', deleteRecipe);
 
-router.put('/recipe/:id', updateRecipe);
+router.put('/api/recipe/:id', updateRecipe);
 
 export default router;
