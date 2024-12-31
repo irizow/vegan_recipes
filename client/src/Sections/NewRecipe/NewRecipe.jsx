@@ -15,7 +15,7 @@ export default function NewRecipe() {
   const [steps, setSteps] = useState(["", "", ""]);
   const [recipePicture, setRecipePicture] = useState();
   const [RecipeCategories, setRecipeCategories] = useState([]);
-  const {data: categories} = useFetch('http://localhost:4000/categories');
+  const {data: categories} = useFetch('http://localhost:4000/api/categories');
   const [currentFields, setCurrentFields] = useState(0);
   const [transitioning, setTransitioning] = useState(false);
 
@@ -53,7 +53,7 @@ export default function NewRecipe() {
     };
 
     try {
-      const response = await fetch("/recipes", {
+      const response = await fetch("/api/recipes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(recipeData),

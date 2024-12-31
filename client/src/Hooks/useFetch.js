@@ -16,10 +16,10 @@ export default function useFetch(url) {
           setData(result);
           setIsLoading(false);
       } catch (err) {
-        if (isMounted) {
+      
           setError(err.message);
           setIsLoading(false);
-        }
+    
       }
     };
 

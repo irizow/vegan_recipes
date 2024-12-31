@@ -16,7 +16,7 @@ export default function Searchbar({ hero }) {
     data: ingredients,
     isLoading,
     error,
-  } = useFetch("http://localhost:4000/ingredients");
+  } = useFetch("http://localhost:4000/api/ingredients");
   const filteredIngredients = ingredients
     ? ingredients
         .filter((ingredient) =>

@@ -6,7 +6,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/recipes": "http://localhost:4000", // Proxy API requests to backend
-    },
+      '/api': 'http://localhost:4000',
+      changeOrigin: true,
+      rewrite: (path) => path.replace(/^\/api/, '')
+    }
   },
 });

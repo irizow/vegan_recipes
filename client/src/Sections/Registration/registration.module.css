@@ -1,0 +1,27 @@
+.registration {
+    width: 100vw;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+.registration form {
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    width: min(300px, 90vw);
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.registration form>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.registration form button {
+    background-color: var(--green);
+    width: 60%;
+    margin-inline: auto;
+}

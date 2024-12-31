@@ -6,6 +6,8 @@ import App from "./App.jsx";
 import Recipes from "./Sections/Recipes/Recipes.jsx";
 import RecipeDetail from "./Sections/RecipeDetail/RecipeDetail.jsx";
 import NewRecipe from "./Sections/NewRecipe/NewRecipe.jsx";
+import LogIn from "./Sections/Login/Login.jsx";
+import Registration from "./Sections/Registration/Registration.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
     path: "/add-recipe",
     element: <NewRecipe />,
   },
+  {
+    path: "/log-in",
+    element: <LogIn />
+  },
+  {
+    path: "/register",
+    element: <Registration />
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(

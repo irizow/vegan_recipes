@@ -14,7 +14,7 @@ export default function Hero({ setShowRecipes }) {
     <section className={styles.hero}>
       <div className={styles.buttonbox}>
         <Link to="/add-recipe">Add Recipe</Link>
-        <button>Log In</button>
+        <Link to='/log-in'>Log In</Link>
       </div>
       <h1>What's In Your Fridge?</h1>
         <Searchbar hero={true} />
