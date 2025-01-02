@@ -1,4 +1,4 @@
-import {pool } from '../db.js'
+import { pool } from '../db.js'
 
 export const getIngredients = async (req, res) => {
     const {rows} = await pool.query('SELECT * FROM ingredients');
@@ -7,7 +7,7 @@ export const getIngredients = async (req, res) => {
 
 export const getIngredient =  async (req, res) => {
     const {id} = req.params;
-    const {rows} = await pool.query(`SELECT * FROM ingredients WHERE id = ${id}`);
+    const {rows} = await pool.query(`SELECT * FROM ingredients WHERE id = $1`, [id]);
     if (rows.length === 0) {
         return res.send('Ingredient not found');
     }

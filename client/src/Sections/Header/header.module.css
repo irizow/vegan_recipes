@@ -1,0 +1,70 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+header>a>img {
+    width: 2.5rem;
+}
+
+.buttonbox, .userbox {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.buttonbox>a, .buttonbox>button {
+    padding: 0.5rem 1rem;
+    background-color: var(--black);
+    border-radius: 10px;
+    color: var(--white);
+    border: 1px solid black
+}
+
+.userbox button, .userbox a {
+    max-height: 3rem;
+    background-color: transparent;
+}
+
+
+.userbox img {
+    margin: 0.2rem;
+    width: 2.5rem;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#logoutbutton {
+    position: absolute;
+    top: 90%;
+    right: 0;
+    font-size: 0.8rem;
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.26);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 800ms ease-in-out;
+}
+
+.userbox>button:hover + #logoutbutton, #logoutbutton:hover {
+    opacity: 1;
+    pointer-events: all;
+    
+}

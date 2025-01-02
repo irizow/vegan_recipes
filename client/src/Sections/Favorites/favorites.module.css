@@ -1,0 +1,13 @@
+.favorites h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--white);
+}
+
+.favoriteswrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}

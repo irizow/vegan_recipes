@@ -8,7 +8,7 @@ export default function RecipeDetail() {
     data: recipe,
     isLoading,
     error,
-  } = useFetch(`http://localhost:4000/recipe/${id}`);
+  } = useFetch(`http://localhost:4000/api/recipe/${id}`);
   console.log(recipe);
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>Error: {error}</p>;

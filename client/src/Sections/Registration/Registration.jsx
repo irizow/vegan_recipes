@@ -14,23 +14,23 @@ export default function Registration() {
         e.preventDefault()
 
         if(username.length > 15 || username.length < 4) {
-            alert('The username must be between 4 and 15 characters long')
+            return alert('The username must be between 4 and 15 characters long')
         }
 
         const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/
 
         if(!passwordPattern.test(password)) {
-            alert('Password must be between 8 and 20 characters and include numbers, letters and special characters')
+            return alert('Password must be between 8 and 20 characters and include numbers, letters and special characters')
         }
 
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
         if(!emailPattern.test(email)) {
-            alert('The email must be valid')
+            return alert('The email must be valid')
         }
 
         if(password !== confirmPassword) {
-            alert("The passwords don't match!")
+            return alert("The passwords don't match!")
         }
 
 

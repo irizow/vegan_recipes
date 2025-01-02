@@ -15,6 +15,10 @@
   --green: rgb(192, 245, 192);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 section {
   padding: 1rem 4rem;
   max-width: 100vw;

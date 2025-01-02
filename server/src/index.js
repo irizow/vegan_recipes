@@ -8,6 +8,7 @@ import recipeIngredientRoutes from './routes/recipeingredients.routes.js';
 import categoryRoutes from './routes/category.routes.js'
 import registrationRoutes from './routes/registration.routes.js'
 import loginRoutes from './routes/login.routes.js'
+import favoritesRoutes from './routes/favorites.routes.js'
 import cors from 'cors'
 import {pool} from './db.js';
 
@@ -31,7 +32,8 @@ app.use(ingredientRoutes);
 app.use(recipeIngredientRoutes);
 app.use(categoryRoutes);
 app.use(registrationRoutes);
-app.use(loginRoutes)
+app.use(loginRoutes);
+app.use(favoritesRoutes);
 
 app.listen(PORT)
 console.log('Server on port ' + PORT);

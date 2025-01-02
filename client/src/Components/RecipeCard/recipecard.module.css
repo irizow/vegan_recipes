@@ -3,15 +3,19 @@
     display: flex;
     background-color: var(--white);
     color: var(--black);
-    width: 80vw;
+    width: 40vw;
     border-radius: 5px;
     padding: 1rem;
     display: grid;
-    grid-template-columns: 1fr 4fr 2fr;
+    grid-template-columns: 2fr 4fr 2fr;
     align-items: center;
     box-sizing: border-box;
     position: relative;
     font-family: 'Poppins';
+}
+
+.recipecard h3:hover {
+    text-decoration: underline;
 }
 
 .recipeimg {
@@ -40,4 +44,11 @@
     border-radius: 5px;
     font-weight: 300;
 
+}
+
+.hearticon {
+    width: 2rem;
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
 }

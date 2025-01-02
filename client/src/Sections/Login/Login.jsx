@@ -1,12 +1,17 @@
 import styles from './login.module.css'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from '../../utils/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function LogIn() {
+    const {setUser} = useContext(UserContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e)=> {
         e.preventDefault();
@@ -29,22 +34,26 @@ export default function LogIn() {
             });
 
             if(response.ok) {
-                alert('Log In successful')
+                const data = await response.json();
+                console.log('data', data)
+                alert('Log In successful');
+                setUser({username: username, id: data.userId});
+                navigate('/')
             }
             else {
                 const data = await response.json();
                 setError(data.message)
-                alert(error)
+                alert(data.message)
             }
 
         }
         catch(err) {
-            console.error('Error during log-in', error);
+            console.error('Error during log-in', err);
             setError(err.message)
-            alert(error)
+            alert(err.message)
         }
         finally {
-            setLoading(false)
+            setLoading(false);
         }
 
     }

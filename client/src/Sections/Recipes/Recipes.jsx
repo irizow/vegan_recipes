@@ -13,9 +13,9 @@ export default function Recipes() {
     data: recipes,
     isLoading,
     error,
-  } = useFetch("http://localhost:4000/recipes");
+  } = useFetch("http://localhost:4000/api/recipes");
   const { data: recipeIngredients } = useFetch(
-    "http://localhost:4000/recipe_ingredients",
+    "http://localhost:4000/api/recipe_ingredients",
   );
 
   let filteredRecipes = undefined;
@@ -58,13 +58,13 @@ export default function Recipes() {
       <h2>Recipes</h2>
       <div className={styles.recipeswrapper}>
         {filteredRecipes !== undefined &&
-          filteredRecipes.map((recipe, index) => {
+          filteredRecipes.map((recipe) => {
             return (
-              <Link to={`/recipe/${recipe.id}`}>
-                <div key={index} onClick={() => handleClick(recipe)}>
+                <div 
+              
+                  key={recipe.id}>
                   <RecipeCard name={recipe.name} id={recipe.id} />
                 </div>
-              </Link>
             );
           })}
       </div>

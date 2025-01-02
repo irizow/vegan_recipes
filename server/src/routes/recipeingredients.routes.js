@@ -3,6 +3,6 @@ import { getRecipeIngredients } from "../controllers/recipeingredients.controlle
 
 const router = Router();
 
-router.get('/recipe_ingredients', getRecipeIngredients);
+router.get('/api/recipe_ingredients', getRecipeIngredients);
 
 export default router;

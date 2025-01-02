@@ -27,7 +27,7 @@ export const postLogin = async(req, res) => {
             { expiresIn: '1h'}
         );
 
-        res.status(200).json({message:'Login Successful', token})
+        res.status(200).json({message:'Login Successful', userId: user.id, token: token})
 
     } catch(err) {
         console.error('Error during login:', err);
