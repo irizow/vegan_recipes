@@ -40,15 +40,10 @@ export default function Recipes() {
       //Calculate how many of those ingredients match in %
       const matchingPercentage = (matchingIngredientsCount / totalIngredients) * 100;
   
-      return matchingPercentage >= 50;
+      return matchingPercentage >= 40;
     });
   }
 
-  const handleClick = (recipe) => {
-    setSelectedRecipe(recipe);
-    console.log("selected recipe + ");
-    console.log(selectedRecipe);
-  };
 
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>Error: {error}</p>;
@@ -67,6 +62,13 @@ export default function Recipes() {
                 </div>
             );
           })}
+          {filteredRecipes.length === 0 &&
+          <div className={styles.recipenotfound}>
+          <h4>We couldn't find any recipe with those ingredients!</h4>
+          <p>if you come up with an idea don't doubt to be the first to </p>
+          <Link to='/add-recipe'>add it!</Link>
+          </div>
+          }
       </div>
     </section>
   );

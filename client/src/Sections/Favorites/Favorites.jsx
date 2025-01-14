@@ -10,6 +10,7 @@ export default function Favorites() {
     const {data: favorites, isLoading, error} = useFetch(`http://localhost:4000/api/favorites/${user.id}`)
     if(isLoading) return <p>...Loading</p>
     if(error) return <p>{error}</p>
+    if(favorites.length === 0) return <p>You don't have any favorites yet</p>
     else {
     console.log(favorites) 
     return (
@@ -19,7 +20,6 @@ export default function Favorites() {
             {favorites.map((favorite) => {
                 return (
                 <RecipeCard name={favorite.name} id={favorite.id}>
-
                 </RecipeCard>
                 )
             })}

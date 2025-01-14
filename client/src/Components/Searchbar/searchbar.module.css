@@ -33,11 +33,14 @@
     padding: 0.5rem;
     text-align: center;
     background-color: rgb(197, 215, 231);
+    text-wrap: nowrap;
     color: var(--grey);
     font-family: 'Poppins';
     opacity: 0;
     border-radius: 5px;
+    margin-right: auto;
 }
+
 
 .pre {
     position: absolute;
@@ -89,17 +92,28 @@
 
 .tagcontainer {
     position: absolute;
+    left: auto;
     right: 0;
     padding: 1rem;
     pointer-events: none;
     display: flex;
     gap: 1rem;
     justify-content: flex-start;
-    width: 100%;
+    width: 75%;
     top: 50%;
     transform: translateY(-50%);
     flex-direction: row-reverse;
+    overflow-x: auto;
+    margin-right: 1rem;
+    scrollbar-width: none;
+    transition: scroll 400ms ease-in-out;
+
 }
+
+.tagcontainer::-webkit-scrollbar {
+    width: 0;
+  }
+
 
 .post {
     animation: tag-three 500ms 500ms ease-in-out forwards;   
@@ -178,7 +192,7 @@
 
 .formbar .tag {
     font-size: 0.8rem;
-    background-color: rgb(215, 255, 219);
+    background-color: rgb(203, 232, 206);
     padding: 0.1rem;
     color: var(--black);
     opacity: 0;

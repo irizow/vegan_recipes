@@ -6,10 +6,11 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
+    z-index: 100;
 }
 
 header>a>img {
-    width: 2.5rem;
+    width: 2rem;
 }
 
 .buttonbox, .userbox {
@@ -31,10 +32,19 @@ header>a>img {
     background-color: transparent;
 }
 
+.userbox a {
+    display: flex;
+    align-items: center;
+}
+
+.userbox a:hover {
+   text-decoration: underline;
+}
+
 
 .userbox img {
     margin: 0.2rem;
-    width: 2.5rem;
+    width: 2rem;
 }
 
 @keyframes fadeIn {
@@ -53,8 +63,8 @@ header>a>img {
 
 #logoutbutton {
     position: absolute;
-    top: 90%;
-    right: 0;
+    top: 75%;
+    right: 1rem;
     font-size: 0.8rem;
     box-shadow: none;
     background-color: rgba(0, 0, 0, 0.26);

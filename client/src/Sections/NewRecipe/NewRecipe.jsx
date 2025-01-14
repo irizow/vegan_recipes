@@ -4,11 +4,13 @@ import { SearchIngredientsContext } from "../../utils/SearchedIngredientsContext
 import Searchbar from "../../Components/Searchbar/Searchbar";
 import useFetch from "../../Hooks/useFetch";
 import FormCard from "../../Components/FormCard/FormCard";
+import { useNavigate } from "react-router-dom";
 
 export default function NewRecipe() {
   const { recipeIngredients, setRecipeIngredients } = useContext(
     SearchIngredientsContext,
   );
+  const navigate = useNavigate();
   const [recipeName, setRecipeName] = useState("");
   const [calories, setCalories] = useState(0);
   const [time, setTime] = useState(0);
@@ -64,6 +66,8 @@ export default function NewRecipe() {
       }
 
       alert("Recipe uploaded successfully!");
+      navigate('/');
+      
     } catch (error) {
       console.error("Error uploading recipe:", error);
       alert("There was an error uploading the recipe.");

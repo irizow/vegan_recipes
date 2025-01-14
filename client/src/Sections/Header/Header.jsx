@@ -21,8 +21,10 @@ export default function Header() {
         }
         {user.username &&
             <div className={styles.userbox}>
+                <Link to="/add-recipe">Add Recipe</Link>
                 <Link to={`/favorites/${user.id}`}>
                     <img src={heartIcon} alt='heart icon'></img>
+                    <p>favorites</p>
                 </Link>
                 <button>{user.username}</button>
                 <button id={styles.logoutbutton} 

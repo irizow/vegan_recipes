@@ -1,9 +1,10 @@
 import styles from "./searchbar.module.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { SearchIngredientsContext } from "../../utils/SearchedIngredientsContext.jsx";
 import useFetch from "../../Hooks/useFetch";
 
 export default function Searchbar({ hero }) {
+  const tagContainerRef = useRef(null);
   const [searching, setSearching] = useState(false);
   const { searchedIngredients, setSearchedIngredients } = useContext(
     SearchIngredientsContext,
@@ -64,6 +65,17 @@ export default function Searchbar({ hero }) {
     }
   };
 
+  useEffect(()=>{
+    const container = tagContainerRef.current
+
+    if(container) {
+      console.log('Container scrollWidth:', container.scrollWidth); // Log scrollWidth
+    console.log('Container scrollLeft:', container.scrollLeft);
+      container.scrollLeft = -container.scrollWidth;
+    }
+
+  }, [searchedIngredients, recipeIngredients])
+
   if (isLoading) return <h1>Loading...</h1>;
   if (error) return <p>Error: {error}</p>;
 
@@ -97,7 +109,7 @@ export default function Searchbar({ hero }) {
         </div>
       )}
       {searchedIngredients && hero ? (
-        <div className={styles.tagcontainer}>
+        <div ref={tagContainerRef} className={styles.tagcontainer}>
           {searchedIngredients.map((ingredient, index) => {
             return (
               <span key={index} className={`${styles.tag} ${styles.post}`}>
@@ -110,7 +122,7 @@ export default function Searchbar({ hero }) {
           })}
         </div>
       ) : recipeIngredients && !hero ? (
-        <div className={styles.tagcontainer}>
+        <div ref={tagContainerRef} className={styles.tagcontainer}>
           {recipeIngredients.map((ingredient, index) => {
             return (
               <span key={index} className={`${styles.tag} ${styles.post}`}>

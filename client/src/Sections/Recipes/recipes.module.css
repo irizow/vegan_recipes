@@ -8,5 +8,14 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    
+}
+
+.recipenotfound>p {
+    display: inline;
+}
+
+.recipenotfound>a {
+    font-weight: 400;
+    text-decoration: underline;
+    display: inline;
 }
