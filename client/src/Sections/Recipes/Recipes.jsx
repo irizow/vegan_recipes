@@ -32,7 +32,7 @@ export default function Recipes() {
   
       //How many of those ingredients are in the searchedIngredients?
       const matchingIngredientsCount = recipeIngredientsForRecipe.filter((recipeIngredient) =>
-        searchedIngredients.some(
+        Array.from(searchedIngredients).some(
           (ingredient) => ingredient.id === recipeIngredient.ingredient_id
         )
       ).length;
@@ -62,7 +62,8 @@ export default function Recipes() {
                 </div>
             );
           })}
-          {filteredRecipes.length === 0 &&
+          {console.log('filtered recipes', filteredRecipes)}
+          {filteredRecipes=== undefined || filteredRecipes.length === 0 &&
           <div className={styles.recipenotfound}>
           <h4>We couldn't find any recipe with those ingredients!</h4>
           <p>if you come up with an idea don't doubt to be the first to </p>

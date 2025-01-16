@@ -1,0 +1,32 @@
+@keyframes popUpAppear {
+    0% {
+        opacity: 0;
+        bottom: -1rem;
+    }
+
+    50% {
+        opacity: 1;
+        bottom: 2rem;
+    }
+
+    100% {
+        opacity: 0;
+        bottom: 5rem
+    }
+}
+
+.popupcontainer {
+    position: fixed;
+    bottom: 2rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: var(--white);
+    box-shadow: 0px 0px 3px grey;
+    opacity: 0;
+    outline: 2px solid green;
+}
+
+.animate {
+    animation: popUpAppear 1.5s ease-in-out;
+}

@@ -37,33 +37,44 @@ export default function Searchbar({ hero }) {
 
   const handleIngredientClick = (ingredient) => {
     if (hero) {
-      setSearchedIngredients((prevIngredients) => [
-        ...prevIngredients,
-        ingredient,
-      ]);
-      console.log("searched: " + searchedIngredients);
-    } else {
-      setRecipeIngredients((prevIngredients) => [
-        ...prevIngredients,
-        ingredient,
-      ]);
-      console.log("recipe ing: " + recipeIngredients);
+        if(searchedIngredients.has(ingredient)) {
+          alert('Ingredient already added')
+      }
+        else {
+        setSearchedIngredients((prevIngredients) =>
+          new Set(prevIngredients).add(ingredient)
+        )
+        console.log(searchedIngredients)
+        }
+      }
+      else {
+        if(recipeIngredients.has(ingredient)) {
+          alert('Ingredient already added')
+        }
+        else {
+          setRecipeIngredients((prevIngredients) => 
+            new Set(prevIngredients).add(ingredient)
+          
+          )
+        }
     }
-  };
+    }
+
 
   const deleteIngredient = (deletedIngredient) => {
-    if (hero) {
-      const newSearch = searchedIngredients.filter(
-        (ingredient) => ingredient !== deletedIngredient,
-      );
-      setSearchedIngredients(newSearch);
-    } else {
-      const newIngredients = recipeIngredients.filter(
-        (ingredient) => ingredient !== deletedIngredient,
-      );
-      setRecipeIngredients(newIngredients);
+    function updateSet(setFunction) {
+      setFunction(prevIngredients => {
+        const updatedIngredients = new Set(prevIngredients);
+        updatedIngredients.delete(deletedIngredient);
+        return updatedIngredients;
+      })
     }
-  };
+    if (hero) {
+      updateSet(setSearchedIngredients)
+    } else {
+      updateSet(setRecipeIngredients)
+      };
+    }
 
   useEffect(()=>{
     const container = tagContainerRef.current
@@ -110,7 +121,7 @@ export default function Searchbar({ hero }) {
       )}
       {searchedIngredients && hero ? (
         <div ref={tagContainerRef} className={styles.tagcontainer}>
-          {searchedIngredients.map((ingredient, index) => {
+          {[...searchedIngredients].map((ingredient, index) => {
             return (
               <span key={index} className={`${styles.tag} ${styles.post}`}>
                 {ingredient.name}
@@ -123,7 +134,7 @@ export default function Searchbar({ hero }) {
         </div>
       ) : recipeIngredients && !hero ? (
         <div ref={tagContainerRef} className={styles.tagcontainer}>
-          {recipeIngredients.map((ingredient, index) => {
+          {Array.from(recipeIngredients).map((ingredient, index) => {
             return (
               <span key={index} className={`${styles.tag} ${styles.post}`}>
                 {ingredient.name}

@@ -3,6 +3,7 @@ import useFetch from '../../Hooks/useFetch';
 import unknownImg from '../../assets/images/Recipes/unknownpicture.webp'
 import heartIcon from '../../assets/images/Icons/heart.svg'
 import filledHeartIcon from '../../assets/images/Icons/filledheart.png'
+import PopUp from '../PopUp/PopUp';
 import { UserContext } from '../../utils/UserContext';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -12,6 +13,7 @@ export default function RecipeCard({name, id, img}) {
     const {data: recipeCategories} = useFetch('http://localhost:4000/api/categoryrecipes');
     const {data: categories} = useFetch('http://localhost:4000/api/categories');
     const [favorites, setFavorites] = useState([]);
+    const [isToggled, setIsToggled] = useState({status: false, message: ''});
     let matchedCategories = [];
 
     useEffect(()=> {
@@ -35,6 +37,13 @@ export default function RecipeCard({name, id, img}) {
         const categoryIds = filteredCategories.map((recipeCategory) => recipeCategory.tag_id);
         matchedCategories = categories.filter((category) => categoryIds.includes(category.id));
     }
+
+    const togglePopUp = (message) => {
+        setIsToggled({status: true, message});
+        setTimeout(()=> {
+            setIsToggled({status: false, message: ''})
+        }, 2000)
+    }
     
     const handleClick = async (e) => {
         e.stopPropagation()
@@ -53,11 +62,11 @@ export default function RecipeCard({name, id, img}) {
             }
             if(isFavorite) {
                 setFavorites(favorites.filter((favorite) => favorite !== id))
-                alert('Favorite deleted from the list')
+                togglePopUp('Favorite deleted from the list');
             } 
             else if(!isFavorite) {
                 setFavorites([...favorites, id])
-                alert('Favorite added to the list')
+                togglePopUp('Favorite added to the list');
             }
         }
         catch(err) {
@@ -70,6 +79,7 @@ export default function RecipeCard({name, id, img}) {
     }
     
     return (
+    <>
     <div className={styles.recipecard}>
         <div className={styles.recipeimg}>
             <img src={img ? img : unknownImg} alt={`${name} picture`}></img>
@@ -89,5 +99,9 @@ export default function RecipeCard({name, id, img}) {
             <span key={index}>{category.name}</span>) : ''}
         </div>
     </div>
+    {isToggled.status &&
+        <PopUp message={isToggled.message}></PopUp>
+    }
+    </>
     )
 }
