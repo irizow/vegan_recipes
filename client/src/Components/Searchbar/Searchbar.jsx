@@ -96,7 +96,7 @@ export default function Searchbar({ hero }) {
       onClick={handleInputClick}
     >
       <input type="text" onChange={handleInputChange} />
-      {!searching && hero && (
+      {!searching && hero && searchedIngredients.size === 0 && (
         <>
           <span className={`${styles.tag} ${styles.pre}`}>onion  &#128473;</span>
           <span className={`${styles.tag} ${styles.pre}`}>carrots  &#128473;</span>

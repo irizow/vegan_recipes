@@ -53,12 +53,12 @@ export default function Recipes() {
       <h2>Recipes</h2>
       <div className={styles.recipeswrapper}>
         {filteredRecipes !== undefined &&
-          filteredRecipes.map((recipe) => {
+          filteredRecipes.map((recipe, index) => {
             return (
                 <div 
               
                   key={recipe.id}>
-                  <RecipeCard name={recipe.name} id={recipe.id} />
+                  <RecipeCard name={recipe.name} id={recipe.id} delay={index * 0.4}/>
                 </div>
             );
           })}

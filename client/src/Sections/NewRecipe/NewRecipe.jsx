@@ -48,7 +48,7 @@ export default function NewRecipe() {
     const recipeData = {
       name: recipeName,
       instructions: steps,
-      ingredientIds: recipeIngredients.map((ingredient) => ingredient.id),
+      ingredientIds: Array.from(recipeIngredients).map((ingredient) => ingredient.id),
       calories_per_100: calories,
       time: time,
       categoryIds: RecipeCategories,

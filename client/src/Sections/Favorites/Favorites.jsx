@@ -17,9 +17,9 @@ export default function Favorites() {
         <section className={styles.favorites}>
             <h2>{user.username}'s Favorites</h2>
             <div className={styles.favoriteswrapper}>
-            {favorites.map((favorite) => {
+            {favorites.map((favorite, index) => {
                 return (
-                <RecipeCard name={favorite.name} id={favorite.id}>
+                <RecipeCard name={favorite.name} id={favorite.id} delay={index * 0.2}>
                 </RecipeCard>
                 )
             })}

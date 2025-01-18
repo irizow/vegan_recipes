@@ -197,4 +197,5 @@
     color: var(--black);
     opacity: 0;
     max-height: 1.5rem;
+    text-wrap: nowrap;
 }

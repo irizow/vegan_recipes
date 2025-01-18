@@ -7,8 +7,9 @@ import PopUp from '../PopUp/PopUp';
 import { UserContext } from '../../utils/UserContext';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
-export default function RecipeCard({name, id, img}) {
+export default function RecipeCard({name, id, img, delay}) {
     const {user} = useContext(UserContext);
     const {data: recipeCategories} = useFetch('http://localhost:4000/api/categoryrecipes');
     const {data: categories} = useFetch('http://localhost:4000/api/categories');
@@ -80,7 +81,11 @@ export default function RecipeCard({name, id, img}) {
     
     return (
     <>
-    <div className={styles.recipecard}>
+    <motion.div
+    initial={{y: 50, opacity: 0}}
+    animate={{y: 0, opacity: 1}}
+    transition={{delay , duration: 0.6}}
+     className={styles.recipecard}>
         <div className={styles.recipeimg}>
             <img src={img ? img : unknownImg} alt={`${name} picture`}></img>
         </div>
@@ -98,7 +103,7 @@ export default function RecipeCard({name, id, img}) {
             {matchedCategories ? matchedCategories.map((category, index) =>
             <span key={index}>{category.name}</span>) : ''}
         </div>
-    </div>
+    </motion.div>
     {isToggled.status &&
         <PopUp message={isToggled.message}></PopUp>
     }
